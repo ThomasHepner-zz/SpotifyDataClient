@@ -51,3 +51,7 @@ c:\users\thomas\documents\visual studio 2015\Projects\SpotifyDataClient\SpotifyD
 c:\users\thomas\documents\visual studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\obj\Debug\SpotifyDataClient.csprojResolveAssemblyReference.cache
 c:\users\thomas\documents\visual studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\obj\Debug\SpotifyDataClient.dll
 c:\users\thomas\documents\visual studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\obj\Debug\SpotifyDataClient.pdb
+C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\EntityFramework.dll
+C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\EntityFramework.SqlServer.dll
+C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\EntityFramework.xml
+C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\EntityFramework.SqlServer.xml
