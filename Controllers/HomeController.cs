@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,6 +26,23 @@ namespace SpotifyDataClient.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public async System.Threading.Tasks.Task<ActionResult> SearchResults(string searchString)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://ws.spotify.com/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync("search/1/track.json?q=" + searchString);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine("Hola");
+                }
+            }
             return View();
         }
     }

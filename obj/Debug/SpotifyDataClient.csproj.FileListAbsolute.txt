@@ -55,3 +55,5 @@ C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyD
 C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\EntityFramework.SqlServer.dll
 C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\EntityFramework.xml
 C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\EntityFramework.SqlServer.xml
+C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\System.Net.Http.Formatting.dll
+C:\Users\Thomas\Documents\Visual Studio 2015\Projects\SpotifyDataClient\SpotifyDataClient\bin\System.Net.Http.Formatting.xml
