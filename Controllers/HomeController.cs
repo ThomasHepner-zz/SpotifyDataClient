@@ -31,6 +31,10 @@ namespace SpotifyDataClient.Controllers
 
         public async System.Threading.Tasks.Task<ActionResult> SearchResults(string searchString)
         {
+            if (!String.IsNullOrEmpty(searchString)) {
+                searchString = searchString.Replace(' ', '+');
+                Console.WriteLine(searchString);
+            }
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://ws.spotify.com/");
