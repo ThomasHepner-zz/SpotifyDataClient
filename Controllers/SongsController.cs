@@ -58,8 +58,15 @@ namespace SpotifyDataClient.Controllers
             {
                 try
                 {
-                    albums.Add(new Album() { name = (string)artistTracks[i]["album"]["name"], releaseYear = (int)artistTracks[i]["album"]["released"], artist = artist });
-                    songs.Add(new Song() { name = (string)artistTracks[i]["name"], popularity = (float)artistTracks[i]["popularity"], length = (float)artistTracks[i]["length"], album = albums.Last<Album>() });
+                    string albumName = (string)artistTracks[i]["album"]["name"];
+                    var albumRecords = from a in db.Albums
+                                       where a.name == albumName
+                                       select a;
+                    if (albumRecords.ToList().Count() == 0)
+                    {
+                        albums.Add(new Album() { name = albumName, releaseYear = (int)artistTracks[i]["album"]["released"], artist = artist });
+                    } 
+                    songs.Add(new Song() { name = (string)artistTracks[i]["name"], popularity = (float)artistTracks[i]["popularity"], length = (float)artistTracks[i]["length"], album = albums.Find(a => a.name == albumName) });
                 }
                 catch (Exception e)
                 {
@@ -67,13 +74,19 @@ namespace SpotifyDataClient.Controllers
                 }
             }
             // Doing the change saving separately for better error finding.
-            db.Artists.Add(artist);
+            var artistRecords = from a in db.Artists
+                                where a.name == artist.name
+                                select a;
+            if (artistRecords.ToList().Count() == 0)
+            {
+                db.Artists.Add(artist);
+                db.SaveChanges();
+            }
+            albums = albums.Distinct().ToList();
+            albums.ForEach(a => db.Albums.Add(a));
             db.SaveChanges();
 
-            albums.ForEach(album => db.Albums.Add(album));
-            db.SaveChanges();
-
-            songs.ForEach(song => db.Songs.Add(song));
+            songs.ForEach(s => db.Songs.Add(s));
             db.SaveChanges();
 
             return View(songs);
