@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SpotifyDataClient.Models.Artist>
+﻿@model IEnumerable<SpotifyDataClient.Models.Album>
 
 @{
     ViewBag.Title = "Index";
@@ -15,6 +15,9 @@
         <th>
             @Html.DisplayNameFor(model => model.name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.releaseYear)
+        </th>
         <th></th>
     </tr>
 
@@ -24,9 +27,12 @@
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.artistID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.artistID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.artistID })
+            @Html.DisplayFor(modelItem => item.releaseYear)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.albumID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.albumID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.albumID })
         </td>
     </tr>
 }

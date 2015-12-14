@@ -11,107 +11,107 @@ using SpotifyDataClient.Models;
 
 namespace SpotifyDataClient.Controllers
 {
-    public class ArtistsController : Controller
+    public class AlbumsController : Controller
     {
         private SpotifyContext db = new SpotifyContext();
 
-        // GET: Artists
+        // GET: Albums
         public ActionResult Index()
         {
-            return View(db.Artists.ToList());
+            return View(db.Albums.ToList());
         }
 
-        // GET: Artists/Details/5
+        // GET: Albums/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artist artist = db.Artists.Find(id);
-            if (artist == null)
+            Album album = db.Albums.Find(id);
+            if (album == null)
             {
                 return HttpNotFound();
             }
-            return View(artist);
+            return View(album);
         }
 
-        // GET: Artists/Create
+        // GET: Albums/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Artists/Create
+        // POST: Albums/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "artistID,name")] Artist artist)
+        public ActionResult Create([Bind(Include = "albumID,name,releaseYear")] Album album)
         {
             if (ModelState.IsValid)
             {
-                db.Artists.Add(artist);
+                db.Albums.Add(album);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(artist);
+            return View(album);
         }
 
-        // GET: Artists/Edit/5
+        // GET: Albums/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artist artist = db.Artists.Find(id);
-            if (artist == null)
+            Album album = db.Albums.Find(id);
+            if (album == null)
             {
                 return HttpNotFound();
             }
-            return View(artist);
+            return View(album);
         }
 
-        // POST: Artists/Edit/5
+        // POST: Albums/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "artistID,name")] Artist artist)
+        public ActionResult Edit([Bind(Include = "albumID,name,releaseYear")] Album album)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(artist).State = EntityState.Modified;
+                db.Entry(album).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(artist);
+            return View(album);
         }
 
-        // GET: Artists/Delete/5
+        // GET: Albums/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Artist artist = db.Artists.Find(id);
-            if (artist == null)
+            Album album = db.Albums.Find(id);
+            if (album == null)
             {
                 return HttpNotFound();
             }
-            return View(artist);
+            return View(album);
         }
 
-        // POST: Artists/Delete/5
+        // POST: Albums/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Artist artist = db.Artists.Find(id);
-            db.Artists.Remove(artist);
+            Album album = db.Albums.Find(id);
+            db.Albums.Remove(album);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

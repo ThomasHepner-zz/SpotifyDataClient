@@ -1,15 +1,12 @@
 ﻿@model IEnumerable<SpotifyDataClient.Models.Song>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Songs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Saved Songs</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -19,9 +16,8 @@
             Popularity
         </th>
         <th>
-            Length
+            Length (seconds)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {

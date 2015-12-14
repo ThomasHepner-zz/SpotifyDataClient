@@ -1,4 +1,4 @@
-﻿@model SpotifyDataClient.Models.Artist
+﻿@model SpotifyDataClient.Models.Album
 
 @{
     ViewBag.Title = "Details";
@@ -8,7 +8,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Artist</h4>
+    <h4>Album</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,9 +19,17 @@
             @Html.DisplayFor(model => model.name)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.releaseYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.releaseYear)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.artistID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.albumID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
