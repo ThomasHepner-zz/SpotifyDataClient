@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            Song Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.popularity)
+            Popularity
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.length)
+            Length
         </th>
         <th></th>
     </tr>
@@ -34,11 +34,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.length)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

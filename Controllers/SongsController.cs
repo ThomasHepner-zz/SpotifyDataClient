@@ -66,6 +66,16 @@ namespace SpotifyDataClient.Controllers
                     Console.Write(e.ToString());
                 }
             }
+            // Doing the change saving separately for better error finding.
+            db.Artists.Add(artist);
+            db.SaveChanges();
+
+            albums.ForEach(album => db.Albums.Add(album));
+            db.SaveChanges();
+
+            songs.ForEach(song => db.Songs.Add(song));
+            db.SaveChanges();
+
             return View(songs);
         }
         // GET: Songs
