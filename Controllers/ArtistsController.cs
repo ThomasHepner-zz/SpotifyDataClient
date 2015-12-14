@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SpotifyDataClient.DAL;
 using SpotifyDataClient.Models;
+using SpotifyDataClient.ViewModels;
 
 namespace SpotifyDataClient.Controllers
 {
@@ -33,7 +34,47 @@ namespace SpotifyDataClient.Controllers
             {
                 return HttpNotFound();
             }
-            return View(artist);
+            ViewBag.ArtistName = artist.name;
+            List<AlbumReleaseGroup> albumsViewModel = new List<AlbumReleaseGroup>();
+            var albums = from album in db.Albums
+                         where album.artist.name == artist.name
+                         orderby album.releaseYear
+                         select album;
+
+            foreach (var album in albums.ToList())
+            {
+                float popularitySum = 0;
+                float highestLength = 0;
+                string longestTrackName = null;
+                int albumSongsCount = 0;
+
+                var songs = from song in db.Songs
+                            where song.album.name == album.name
+                            select song;
+
+                foreach (var song in songs)
+                {
+                    albumSongsCount++;
+                    popularitySum += song.popularity;
+                    if (song.length > highestLength)
+                    {
+                        highestLength = song.length;
+                        longestTrackName = song.name;
+                    }
+                }
+
+                albumsViewModel.Add(new AlbumReleaseGroup()
+                    {
+                        albumName = album.name,
+                        releaseYear = album.releaseYear,
+                        longestTrackName = longestTrackName,
+                        longestTrackLength = highestLength,
+                        averageTrackPopularity = popularitySum / albumSongsCount
+                    }
+                );
+            }
+
+            return View(albumsViewModel);
         }
 
         // GET: Artists/Create

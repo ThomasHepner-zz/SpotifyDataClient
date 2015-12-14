@@ -5,20 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Albums</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            Album Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.releaseYear)
+            Release Year
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -28,11 +24,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.releaseYear)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.albumID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.albumID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.albumID })
         </td>
     </tr>
 }

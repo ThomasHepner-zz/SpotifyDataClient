@@ -5,15 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Artists</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            Name
         </th>
         <th></th>
     </tr>
@@ -24,9 +21,7 @@
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.artistID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.artistID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.artistID })
+            @Html.ActionLink("See albums", "Details", new { id=item.artistID })
         </td>
     </tr>
 }

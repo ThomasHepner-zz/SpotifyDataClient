@@ -1,27 +1,49 @@
-﻿@model SpotifyDataClient.Models.Artist
-
+﻿
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Artist";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.ArtistName</h2>
 
-<div>
-    <h4>Artist</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+<table class="table">
+    <tr>
+        <th>
+            Album Name
+        </th>
+        <th>
+            Release Year
+        </th>
+        <th>
+            Average Track Popularity
+        </th>
+        <th>
+            Longest Track
+        </th>
+        <th>
+            Longest Track Length
+        </th>
+    </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.albumName
+            </td>
+            <td>
+                @item.releaseYear
+            </td>
+            <td>
+                @item.averageTrackPopularity
+            </td>
+            <td>
+                @item.longestTrackName
+            </td>
+            <td>
+                @item.longestTrackLength
+            </td>
+        </tr>
+    }
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.artistID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</table>
