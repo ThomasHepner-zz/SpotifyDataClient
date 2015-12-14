@@ -5,4 +5,13 @@
 }
 
 <h2>SearchResults</h2>
+@{ 
+    if (ViewBag.Message == null)
+    {
+        <h3>No results found</h3>
+    } else
+    {
+        // Iterate over the results, showing track name, album, etc.
+    }
+}
 
