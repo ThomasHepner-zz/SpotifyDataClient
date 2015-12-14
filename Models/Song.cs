@@ -7,11 +7,11 @@ namespace SpotifyDataClient.Models
 {
     public class Song
     {
-        public int SongID { get; set; }
-        public string Name { get; set; }
-        public float Popularity { get; set; }
-        public float Length { get; set; }
+        public int ID { get; set; }
+        public string name { get; set; }
+        public float popularity { get; set; }
+        public float length { get; set; }
 
-        public virtual Album Album { get; set; }
+        public virtual Album album { get; set; }
     }
 }

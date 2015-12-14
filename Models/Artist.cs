@@ -7,9 +7,9 @@ namespace SpotifyDataClient.Models
 {
     public class Artist
     {
-        public int ArtistID { get; set; }
-        public string Name { get; set; }
+        public int artistID { get; set; }
+        public string name { get; set; }
 
-        public virtual ICollection<Album> Albums { get; set; }
+        public virtual ICollection<Album> albums { get; set; }
     }
 }

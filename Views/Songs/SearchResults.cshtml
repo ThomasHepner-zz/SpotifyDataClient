@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "SearchResults";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>SearchResults</h2>
+@{
+    if (ViewBag.Message != null)
+    {
+        <h3>@ViewBag.Message</h3>
+    }
+}
+<h4>This results have automatically been added to your database.</h4>
+<table class="table">
+    <tr>
+        <th>
+            Song Name
+        </th>
+        <th>
+            Album
+        </th>
+        <th>
+            Release Year
+        </th>
+        <th>
+            Length
+        </th>
+        <th>
+            Popularity
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.name</td>
+            <td>@item.album.name</td>
+            <td>@item.album.releaseYear</td>
+            <td>@item.length</td>
+            <td>@item.popularity</td>
+        </tr>
+    }
+</table>
