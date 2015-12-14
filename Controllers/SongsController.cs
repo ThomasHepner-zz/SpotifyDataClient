@@ -46,11 +46,18 @@ namespace SpotifyDataClient.Controllers
                 return View();
             }
 
+            List<Song> songs = new List<Song>();
+            processResponse(jsonResponse, songs);
+
+            return View(songs);
+        }
+
+        private void processResponse (JObject jsonResponse, List<Song> songs)
+        {
             var artistTracks = jsonResponse["tracks"];
             int numberOfTracks = (int)jsonResponse["info"]["num_results"] > (int)jsonResponse["info"]["limit"] ? (int)jsonResponse["info"]["limit"] : (int)jsonResponse["info"]["num_results"];
 
             List<Album> albums = new List<Album>();
-            List<Song> songs = new List<Song>();
 
             Artist artist = new Artist() { name = (string)artistTracks[0]["artists"][0]["name"] };
 
@@ -65,7 +72,7 @@ namespace SpotifyDataClient.Controllers
                     if (albumRecords.ToList().Count() == 0)
                     {
                         albums.Add(new Album() { name = albumName, releaseYear = (int)artistTracks[i]["album"]["released"], artist = artist });
-                    } 
+                    }
                     songs.Add(new Song() { name = (string)artistTracks[i]["name"], popularity = (float)artistTracks[i]["popularity"], length = (float)artistTracks[i]["length"], album = albums.Find(a => a.name == albumName) });
                 }
                 catch (Exception e)
@@ -73,6 +80,11 @@ namespace SpotifyDataClient.Controllers
                     Console.Write(e.ToString());
                 }
             }
+            addToDatabase(artist, albums, songs);
+        }
+
+        private void addToDatabase (Artist artist, List<Album> albums, List<Song> songs)
+        {
             // Doing the change saving separately for better error finding.
             var artistRecords = from a in db.Artists
                                 where a.name == artist.name
@@ -88,9 +100,8 @@ namespace SpotifyDataClient.Controllers
 
             songs.ForEach(s => db.Songs.Add(s));
             db.SaveChanges();
-
-            return View(songs);
         }
+
         // GET: Songs
         public ActionResult Index()
         {
